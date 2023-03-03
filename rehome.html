@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<style>
+  nav {
+    margin: 0;
+    background-color: #501f3a;
+    overflow: hidden;
+}
+
+nav a {
+    float: right;
+    color: #F5F5F5;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    margin: 0px;
+    background-color: #a83474;
+}
+nav button {
+    float: right;
+    color: #F5F5F5;
+    text-align: center;
+    padding: 15px;
+    text-decoration: none;
+}
+
+nav button:hover {
+    margin: 0px;
+    background-color: #a83474;
+}
+
+head{
+  margin: 0px;
+  width: 100%;
+}
+
+body{
+  margin: 0px;
+}
+
+.card{
+  padding: 10px;
+  width: 500px;
+}
+
+.card input[type=text]{
+  padding: 5px;
+}
+
+.card input[type=number]{
+  padding: 5px;
+}
+
+textarea{
+  padding:5px;
+}
+
+
+label{
+  font-weight: bolder;
+
+}
+
+button:disabled{
+  background-color: rgb(226, 224, 224);
+  
+}
+button:disabled:hover{
+  background-color: rgb(226, 224, 224);
+  cursor: default;
+}
+button{
+  padding: 10px;
+  border: none;
+  background-color:#501f3a;
+  color: white;
+  width: 100px;
+  cursor: pointer;
+ 
+}
+
+button:hover{
+  background-color:#a83474 ;
+}
+.hidden {
+  display: none;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+</style>
+<html ng-app="rehomepet">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rehome Your Pet</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <header><nav>
+      <button id="btn-login" disabled="true" onclick="login()">Log in</button>
+      <button id="btn-logout" disabled="true" onclick="logout()">Log out</button>
+      <a href=""> About Us </a>
+      <a href="blog.html"> Blog </a>
+      <a href="rehome.html"> Rehome your Pet </a>
+      <a href="adoptpet.html"> Adopt a Pet </a>
+      <a href="home.html"> Home </a>
+          </nav>
+    </header>
+  </head>
+
+  <body ng-controller="FormCtrl">
+    <script src="https://cdn.auth0.com/js/auth0-spa-js/2.0/auth0-spa-js.production.js"></script>
+    <script src="js/app.js"></script>
+    <div class="card">
+    <form name="rehome">
+      <label>What is your pet's name?</label> <input type = "text" ng-model="pet.name" placeholder="enter name" name="name" id="name" required><br><br>
+    
+      <label>Select your pet type: </label><br>
+      <input type="radio" ng-model="pet.type" value="dogs" ng-required="!pet.type" id="type">Dogs<br>
+  <input type="radio" ng-model="pet.type" value="cats" ng-required="!pet.type" id="type">Cats<br>
+  <input type="radio" ng-model="pet.type" value="small animals" ng-required="!pet.type" id="type">Small Animals<br>
+  <input type="radio" ng-model="pet.type" value="birds" ng-required="!pet.type" id="type">Birds<br>
+  <input type="radio" ng-model="pet.type" value="fish" ng-required="!pet.type" id="type">Fish<br>
+  <input type="radio" ng-model="pet.type" value="others" ng-required="!pet.type" id="type">Others<br><br>
+
+   <label>Enter your pet's breed:</label> <input type = "text" ng-model="pet.breed" id="breed"required><br><br>
+
+  <div ng-show="pet.name">
+  <label>How old is {{pet.name}}? (in years) </label>
+  <input type="text" placeholder="5" ng-model="pet.age" id="age" required ><br><br>
+
+ <label> Select the gender of {{pet.name}}: </label><br>
+<input type="radio" ng-model="pet.gender" value="male" id="gender" ng-required="!pet.age" > Male <br>
+<input type="radio" ng-model="pet.gender" value="female" id="gender" ng-required="!pet.age" > Female <br><br>
+
+<div ng-show="pet.type=='dogs' || pet.type=='cats' || pet.type=='small animals'">
+
+<label> Is {{pet.name}} vaccinated? </label><br>
+<input type="radio" ng-model="pet.vaccinated" value="yes" id="vaccinated" > Yes <br>
+<input type="radio" ng-model="pet.vaccinated" value="no" id="vaccinated"> No <br><br>
+
+<label> Is {{pet.name}} spayed/neutered? </label><br>
+<input type="radio" ng-model="pet.neutered" value="yes" id="spayed"> Yes <br>
+<input type="radio" ng-model="pet.neutered" value="no" id="spayed"> No <br><br>
+
+<label> Does {{pet.name}} bite?</label><br>
+<input type="radio" ng-model="pet.bite" value="yes" id="bite" value="yes"> Yes <br>
+<input type="radio" ng-model="pet.bite" value="no" id="bite" value="no"> No <br><br>
+ </div>
+
+<div ng-show="pet.type!='others'" ng-if="pet.type">
+ <label> Is {{pet.name}} good with other {{pet.type}}?</label><br>
+<input type="radio" ng-model="pet.friendly" value="yes" id="friendly"> Yes <br>
+<input type="radio" ng-model="pet.friendly" value="no" id="friendly"> No <br><br>
+</div>
+
+<label>  Why do you want to rehome {{pet.name}}?</label><br>
+  <textarea rows="5" cols="50" ng-model="pet.reason" ng-required="!pet.reason" id="reason"></textarea><br><br>
+
+<label> Upload a picture of {{pet.name}}:</label> <input type = "file" accept="image/*" ng-model="pet.image"  ><br><br>
+
+ 
+</div>
+<br><br><button ng-disabled="rehome.$invalid" id="btn">Submit</button> </form>
+</div>
+  </body>
+
+
+
+  <script type="module">
+
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+import { getFirestore,addDoc, collection} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-firestore.js";
+
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDZkb9buuvB08wGNmpR4fCRaMOvLTRW5PU",
+  authDomain: "flutternotes-f15f9.firebaseapp.com",
+  projectId: "flutternotes-f15f9",
+  storageBucket: "flutternotes-f15f9.appspot.com",
+  messagingSenderId: "406806266462",
+  appId: "1:406806266462:web:8f098598dcef742c1feacf",
+  measurementId: "G-PR5NR3F681"
+};
+
+// Initialize Firebase
+const app= initializeApp(firebaseConfig);
+
+
+const db =getFirestore(app);
+
+
+
+btn.addEventListener("click", function() {
+  var name = document.getElementById("name").value;
+var type = document.getElementById("type").value;
+var breed = document.getElementById("breed").value;
+var age = document.getElementById("age").value;
+var gender = document.getElementById("gender").value;
+var vaccinated = document.getElementById("vaccinated").value;
+var spayed = document.getElementById("spayed").value;
+var bite = document.getElementById("bite").value;
+var friendly = document.getElementById("friendly").value;
+var reason = document.getElementById("reason").value;
+const btn = document.getElementById("btn");
+  try {
+  const docRef =  addDoc(collection(db, "pets"), {
+    name:name,
+    type:type,
+    breed:breed,
+    age:age,
+    gender:gender,
+    vaccinated:vaccinated,
+    spayed:spayed,
+    bite:bite,
+    friendly:friendly,
+    reason:reason
+  });
+
+  console.log("Document written with ID: ", docRef.id);
+  window.alert("successful");
+} catch (e) {
+  console.error("Error adding document: ", e);
+}
+});
+
+
+
+
+
+
+  </script>
+
+  <script>
+
+ var apps = angular.module('rehomepet', []);
+
+
+apps.controller('FormCtrl', function($scope) {
+ });
+// // Add a second document with a generated ID.
+
+
+
+
+
+  </script>
+
+
+</html>
+

@@ -1,0 +1,62 @@
+
+
+<link rel="stylesheet" type="text/css" href="register.css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+<div class="container">
+	<div class="header">
+		<h2>Create Account</h2>
+	</div>
+	<form id="form" class="form"  onsubmit="signup()" action="mywebsite2.html" >
+		<div class="form-control">
+			<label for="username">Username</label>
+			<input type="text" placeholder="enter your name" id="username" />
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="username">Email</label>
+			<input type="email" placeholder="abc@gmail.com" id="email" />
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="username">Password</label>
+			<input type="password" placeholder="Password" id="password"/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<div class="form-control">
+			<label for="username">Password check</label>
+			<input type="password" placeholder="Re-enter password" id="password2"/>
+			<i class="fas fa-check-circle"></i>
+			<i class="fas fa-exclamation-circle"></i>
+			<small>Error message</small>
+		</div>
+		<button id="btnlogin" ></a>Submit </button>
+		<br><br>
+            <a href="index.html" style="text-decoration: none">Existing user?- login </a>
+            <br>
+           
+	</form>
+</div>
+<script src="register.js"></script>
+
+
+  <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
+  <script>
+const config = {
+  apiKey: "AIzaSyBLyQ8j21L3ROl-cdAS36T6vG2fGPmBb5Y",
+  authDomain: "petapp-fde0c.firebaseapp.com",
+  projectId: "petapp-fde0c",
+  storageBucket: "petapp-fde0c.appspot.com",
+  messagingSenderId: "339930267975",
+  appId: "1:339930267975:web:ea3510ab22285eda278c62"
+};
+
+// Initialize Firebase
+    firebase.initializeApp(config);
+  </script>
+  <script src="register.js"></script>
